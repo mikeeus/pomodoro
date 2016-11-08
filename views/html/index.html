@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=UTF-8>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pomodoro</title>
+  <script type="text/javascript" src="/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/javascripts/pomodoro.js"></script>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/stylesheets/circle.css">  
+  <link rel="stylesheet" href="/stylesheets/style.css">  
+  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|Ubuntu" rel="stylesheet">
+<body>
+  <div class="title">Pomodoro</div>
+  <div class="container-fluid">
+    <!--<div id="timer-type">Type</div>-->
+    <!--<div id="state">State</div>-->
+    <div class="row main-row">
+      <div class="col-sm-7 col-md-6">
+        <div id="circleProgress" class="c100 big orange" onclick="toggleTimer()">
+          <span id="progress">0:00</span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-5 col-md-6 controls-col">
+        <div class="presets">
+          <div class="ps btn btn-default ps5"  onclick="preset(5)">5</div>
+          <div class="ps btn btn-default ps10" onclick="preset(10)">10</div>
+          <div class="ps btn btn-default ps15" onclick="preset(15)">15</div>
+          <div class="ps btn btn-default ps20" onclick="preset(20)">20</div>
+          <div class="ps btn btn-default ps25" onclick="preset(25)">25</div>
+        </div>
+        <div class="controls">
+          <!--Adjust session length-->
+          <div id="sessionLength">
+            <div class="increment" id="sessionUp"
+              onclick="incrementLength('session','up')">+</div>
+            <div class="session">
+              <div class="session-label">SESSION</div>
+              <div id="session">0:00</div>
+            </div>
+            <div class="increment" id="sessionDown"
+              onclick="incrementLength('session','down')"><span class="minus">-</span></div>
+          </div>
+          <!--Adjust break length-->
+          <div id="breakLength">
+            <div class="increment" id="breakUp"
+              onclick="incrementLength('break','up')">+</div>
+            <div class="break">
+              <div class="break-label">BREAK</div>
+              <span id="break">0:00</span>
+            </div>
+            <div class="increment" id="breakDown"
+              onclick="incrementLength('break','down')">-</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</body>
+</html>

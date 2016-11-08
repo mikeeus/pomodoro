@@ -1,0 +1,131 @@
+$base-color: #64b6ac;
+$primary-color: #5d737e;
+$session: #185d82;
+$break-time: #299a4d;
+$grey: #e7efcd;
+
+body {
+  padding: 50px 30px;
+  // font: 14px Helvetica, Arial, sans-serif;
+  // font-family: 'Ubuntu', sans-serif;
+  font-family: 'Libre Franklin', sans-serif;
+  background: $base-color;
+  color: #fff;
+}
+a {
+  color: #00B7FF;
+}
+.title{
+  position: absolute;
+  border-bottom: 2px solid white;
+  top: 15px;
+  left: 30px;
+  font-size: 26px;  
+}
+.main-row{
+  border: 5px solid white;
+  border-radius: 10px;
+  padding: 30px;
+  margin-top: 30px;
+}
+#circleProgress{
+  cursor: pointer;
+  margin: auto;
+}
+// progress bar
+.green{
+  color: $break-time !important;
+}
+// controls
+.controls-col{
+  padding: 0;
+}
+.controls{
+  text-align: center;
+  #sessionLength, #breakLength{
+    position: relative;
+    height: 90px;
+  }
+  .session, .break{
+    display: inline-block;
+    font-size: 2.5em;
+    margin: auto;
+    margin-top: 15px;
+  }
+  .session-label, .break-label{
+    font-size: 16px;
+    color: $session;
+  }
+  .break-label{
+    color: $break-time;
+  }
+  .increment{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    transition: 200ms;
+    display: inline-block;
+    // color: darken($primary-color, 10%);
+    color: white;
+    border-radius: 5px;
+    font-size: 6em;
+    &:hover{
+      color: darken($base-color, 20%);
+    }
+    &:focus, &:active{
+      color: $base-color;
+    }
+  }
+  #sessionUp, #breakUp{
+    left: 0;
+    position: absolute;
+  }
+  #sessionDown, #breakDown{
+    right: 0;
+    top: -7px;
+    position: absolute;
+  }
+  // #sessionUp, #sessionDown{
+  //   color: $session;
+  //   &:hover{
+  //     color: lighten($session, 5%);
+  //   }
+  //   &:active, &:focus{
+  //     color: darken($session, 5%);
+  //   }
+  // }
+  // #breakUp, #breakDown{
+  //   color: $break-time;
+  //   &:hover{
+  //     color: lighten($break-time, 5%);
+  //   }
+  //   &:active, &:focus{
+  //     color: darken($break-time, 5%);
+  //   }
+  // }
+}
+
+// presets
+.presets{
+  margin-top: 50px;
+  text-align: center;
+  .ps{
+    transition: 200ms;    
+    display: inline-block;
+    margin-bottom: 5px;
+    width: 19%;
+    background: darken($base-color, 20%);
+    border: 0;
+    color: white;
+    font-weight: bold;
+    &:hover{
+      color: white;      
+      background: darken($base-color, 10%);
+    }
+    &:active, &:focus{
+      color: $grey;      
+      background: $base-color;
+    }
+  }
+
+}
