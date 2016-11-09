@@ -11,12 +11,19 @@
   <link rel="stylesheet" href="/stylesheets/circle.css">  
   <link rel="stylesheet" href="/stylesheets/style.css">  
   <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-  <link href="https://fonts.googleapis.com/css?family=Libre+Franklin|Ubuntu" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
 <body>
+  <!--Attribution-->
+  <div class="attribution">
+    <div class="">Designed and built by  <a href="https://www.mikias.net">Mikias Abera</a></div>
+    <small>
+      Sound by <a href="https://www.freesound.org/people/JustinBW/">JustinBW</a> CC BY 3.0
+    </small>
+  </div>
+
   <div class="title">Pomodoro</div>
   <div class="container-fluid">
-    <!--<div id="timer-type">Type</div>-->
-    <!--<div id="state">State</div>-->
+
     <div class="row main-row">
       <div class="col-sm-7 col-md-6">
         <div id="circleProgress" class="c100 big orange" onclick="toggleTimer()">
@@ -26,18 +33,19 @@
             <div class="fill"></div>
           </div>
         </div>
-      </div>
+      </div> <!-- end .col-sm-7 .col-md-6 -->
 
       <div class="col-sm-5 col-md-6 controls-col">
         <div class="presets">
-          <div class="ps btn btn-default ps5"  onclick="preset(5)">5</div>
-          <div class="ps btn btn-default ps10" onclick="preset(10)">10</div>
-          <div class="ps btn btn-default ps15" onclick="preset(15)">15</div>
-          <div class="ps btn btn-default ps20" onclick="preset(20)">20</div>
-          <div class="ps btn btn-default ps25" onclick="preset(25)">25</div>
-        </div>
+          <div class="ps btn btn-default ps1"  onclick="preset(15)">15</div>
+          <div class="ps btn btn-default ps2" onclick="preset(20)">20</div>
+          <div class="ps btn btn-default ps3" onclick="preset(25)">25</div>
+          <div class="ps btn btn-default ps4" onclick="preset(30)">30</div>
+          <div class="ps btn btn-default ps5" onclick="preset(35)">35</div>
+        </div> <!-- end .presets --> 
+
         <div class="controls">
-          <!--Adjust session length-->
+
           <div id="sessionLength">
             <div class="increment" id="sessionUp"
               onclick="incrementLength('session','up')">+</div>
@@ -47,8 +55,8 @@
             </div>
             <div class="increment" id="sessionDown"
               onclick="incrementLength('session','down')"><span class="minus">-</span></div>
-          </div>
-          <!--Adjust break length-->
+          </div> <!-- end #sessionLengh -->
+
           <div id="breakLength">
             <div class="increment" id="breakUp"
               onclick="incrementLength('break','up')">+</div>
@@ -58,12 +66,20 @@
             </div>
             <div class="increment" id="breakDown"
               onclick="incrementLength('break','down')">-</div>
-          </div>
-        </div>
-      </div>
+          </div> <!-- end #breakLength -->
 
+        </div> <!-- end .controls -->
+      </div> <!-- end .controls-col -->
+    </div> <!-- end .main-row -->
+
+    <div class="row quotes">
+        <div class="quotation-left">“</div>
+        <div class="quotation-right">”</div>
+        <div class="quote"></div>
+        <div class="author"></div>
     </div>
 
-  </div>
+  </div> <!-- end .container-fluid -->
+
 </body>
 </html>

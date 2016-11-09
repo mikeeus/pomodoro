@@ -6,15 +6,30 @@ $grey: #e7efcd;
 
 body {
   padding: 50px 30px;
-  // font: 14px Helvetica, Arial, sans-serif;
-  // font-family: 'Ubuntu', sans-serif;
-  font-family: 'Libre Franklin', sans-serif;
+  font-family: 'Noto Serif', serif;
   background: $base-color;
   color: #fff;
 }
 a {
-  color: #00B7FF;
+  color: #fff;
+  font-weight: bold;
+  &:hover{
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+  }
 }
+// attribution
+.attribution{
+  position: absolute;
+  top: 15px;
+  right: 30px;
+  margin: auto;
+  opacity: 0.8;
+  text-align: right;
+
+}
+
 .title{
   position: absolute;
   border-bottom: 2px solid white;
@@ -36,9 +51,15 @@ a {
 .green{
   color: $break-time !important;
 }
+// transition
 // controls
 .controls-col{
   padding: 0;
+}
+@media(min-width: 768px){
+  .controls-col{
+    padding-top: 50px;
+  }
 }
 .controls{
   text-align: center;
@@ -65,11 +86,13 @@ a {
     -ms-user-select: none;
     transition: 200ms;
     display: inline-block;
-    // color: darken($primary-color, 10%);
     color: white;
     border-radius: 5px;
     font-size: 6em;
     &:hover{
+      margin-top: -8px;
+      margin-left: -4px;
+      font-size: 7em;
       color: darken($base-color, 20%);
     }
     &:focus, &:active{
@@ -77,48 +100,34 @@ a {
     }
   }
   #sessionUp, #breakUp{
-    left: 0;
+    left: 5px;
     position: absolute;
   }
   #sessionDown, #breakDown{
-    right: 0;
+    right: 5px;
     top: -7px;
     position: absolute;
   }
-  // #sessionUp, #sessionDown{
-  //   color: $session;
-  //   &:hover{
-  //     color: lighten($session, 5%);
-  //   }
-  //   &:active, &:focus{
-  //     color: darken($session, 5%);
-  //   }
-  // }
-  // #breakUp, #breakDown{
-  //   color: $break-time;
-  //   &:hover{
-  //     color: lighten($break-time, 5%);
-  //   }
-  //   &:active, &:focus{
-  //     color: darken($break-time, 5%);
-  //   }
-  // }
 }
-
 // presets
 .presets{
-  margin-top: 50px;
+  transition: 400ms;
+  position: relative;
+  margin-top: 30px;
+  height: 50px;
   text-align: center;
   .ps{
-    transition: 200ms;    
-    display: inline-block;
+    position: absolute;
+    transition: 300ms;
+    width: 19%;    
     margin-bottom: 5px;
-    width: 19%;
+    // width: 19%;
     background: darken($base-color, 20%);
     border: 0;
     color: white;
     font-weight: bold;
     &:hover{
+      font-size: 1.3em;
       color: white;      
       background: darken($base-color, 10%);
     }
@@ -127,5 +136,36 @@ a {
       background: $base-color;
     }
   }
+  .ps1{ left: 0; }
+  .ps2{ left: 20%; }
+  .ps3{ left: 40%; }
+  .ps4{ left: 60%; }
+  .ps5{ left: 80%; }  
+}
 
+// Quotes
+.quotes{
+  position: relative;
+  width: 80%;
+  margin: auto;
+  padding: 30px;
+  padding-top: 50px;
+  font-size: 1.5em;
+}
+.author{
+  margin-top: 10px;
+  float: right;
+  font-size: 0.9em;
+}
+.quotation-left, .quotation-right{
+  position: absolute;
+  font-size: 150px;
+  top: -25px;
+}
+.quotation-left{
+  left: -50px;
+}
+.quotation-right{
+  right: -50px;
+  bottom: 0;
 }

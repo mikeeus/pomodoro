@@ -1,22 +1,27 @@
 $(document).ready(function(){
 
   updateDisplay(timerType);
+  setQuote();
+  // start interval to change quote every 15 seconds;
+  setInterval(function(){ setQuote(); }, 20000);
 });
-
-// built in browser notification
-// add msg for pause
 
 var pomodoroTimer;
 var breakTimer;
 var timerState = false;
 var timerType = 'session';
 var baseProgressClass = "c100 big orange";
-
 var incrementValue = 60000; // 1 min * 60 seconds * 1000 milliseconds
-var sessionLength = 5000; // x mins * 60 seconds * 1000 milliseconds
+// default length
+var sessionLength = 1500000; // x mins * 60 seconds * 1000 milliseconds
 var sessionLeft = sessionLength;
-var breakLength = 3000;
+var breakLength = 300000;
 var breakLeft = breakLength;
+// notification sound
+var chime = new Audio('/sounds/chime-justinbw.wav');
+function playSound(){
+  chime.play();
+}
 
 function toggleTimer(){
   timerState = !timerState;
@@ -39,18 +44,15 @@ function resetTimers(){
   // remove green class
   $('#progress').removeClass();
 }
-// increments the timer by 1 second
+// increments the timer by -1 second
 function incrementTimer(type){
   if(type == 'session'){
     sessionLeft <= 0 ? stopTimer(type) : sessionLeft -= 1000;
     if(sessionLeft == 0){stopTimer(type);} 
-    console.log('timer: ', sessionLeft);
   } else if(type == 'break'){
     breakLeft <= 0 ? stopTimer(type) : breakLeft -= 1000;
     if(breakLeft == 0){stopTimer(type);}     
-    console.log('timer: ', breakLeft);    
   }
-  console.log('type: ', type);      
   updateProgress(); 
 }
 // Increments session and break length
@@ -74,9 +76,7 @@ function incrementLength(type, direction){
   updateProgress();        
 }
 function updateProgress(){
-  // remove green class from progress
   progress = $("#progress");
-  // change progress bar class then update display
   if(sessionLeft == 0){
     progPercent = Math.round(parseFloat((1 - breakLeft/breakLength) * 100).toPrecision(2));
     updateDisplay('break');
@@ -84,10 +84,12 @@ function updateProgress(){
       progress.addClass('green'); 
       progress.html("Ready?");
       notify("Times up lazy bum! ;) Ready to work?")
+      playSound();
     } else if(timerState == false && progPercent == 0){
       progress.addClass('green');      
       progress.html("Break?");
       notify("Good work! Ready for a " + parseTime(breakLength) + " break?")
+      playSound();      
     }
   } else {
     progress.removeClass();
@@ -105,19 +107,18 @@ function startTimer(type){
     breakTimer = setInterval(function(){ incrementTimer('break') }, 1000);
   }
   if(timerType != type){
-    // when time type changes, add/remove class to change color
     fill = $('.fill');
     bar = $('.bar');    
     fill.hasClass('break-time') ? fill.removeClass('break-time') : fill.addClass('break-time');
     bar.hasClass('break-time') ? bar.removeClass('break-time') : bar.addClass('break-time');    
     timerType = type;
   }
-  console.log('begin: ', type);
+  // console.log('begin: ', type);
 }
 function stopTimer(type){
   type == 'session' ? clearInterval(pomodoroTimer) : clearInterval(breakTimer);
   timerState = false;
-  console.log('Stopped: ', type);
+  // console.log('Stopped: ', type);
 }
 function parseTime(time){
   min = time/1000/60 << 0;
@@ -126,9 +127,8 @@ function parseTime(time){
   return min + ":" + sec;
 }
 function preset(time){
-  // handle preset buttons
-  console.log('preset to: ', time);
-  stopTimer();
+  stopTimer('session');
+  stopTimer('break');  
   sessionLength = (time * 1000 * 60);
   sessionLeft = sessionLength;
   breakLength = sessionLength/5;
@@ -178,7 +178,16 @@ function notify(message) {
   // want to be respectful there is no need to bother them any more.
 }
 
-
+//
+function setQuote(){
+  random = Math.floor((Math.random() * 90) + 1);
+  quote = quotesArray[random].quote;
+  author = quotesArray[random].by;
+  $('.quote').html(quote);
+  $('.author').html(author);
+  console.log('quote: ', quotesArray[random]);
+  console.log('random #: ', random );  
+}
 
 
 
@@ -263,8 +272,7 @@ var quotesArray = [
 
   {quote: "The great accomplishments of man have resulted from the transmission of ideas of enthusiasm.", by: "Thomas J. Watson"},
 
-  {quote: "If you are interested in balancing work and pleasure, stop trying to balance them. Instead make your work more pleasurable.", by: "Donald Trump"},
-
+  
   {quote: "By failing to prepare, you are preparing to fail.", by: "Benjamin Franklin"},
 
   {quote: "Don’t confuse the urgent with the important.", by: "Preston Ni"},
@@ -362,8 +370,6 @@ var quotesArray = [
   {quote: "The noblest search is the search for excellence.", by: "Lyndon B. Johnson"},
 
   {quote: "You don’t actually do a project; you can only do action steps related to it. When enough of the right action steps have been taken, some situation will have been created that matches your initial picture of the outcome closely enough that you can call it ‘done.'", by: "David Allen"},
-
-  {quote: "Part of being a winner is knowing when enough is enough. Sometimes you have to give up the fight and walk away, and move on to something that’s more productive.", by: "Donald Trump"},
 
   {quote: "It’s not always that we need to do more but rather that we need to focus on less.", by: "Nathan W. Morris"},
 

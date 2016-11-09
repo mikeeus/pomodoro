@@ -14,8 +14,9 @@ $grey: #fcfffd;
   transition: 400ms;
   font-size: 400px;
 }
-@media(max-width: 767px){
+@media(max-width: 860px){
   .c100.big {
+    transition: 400ms;
     font-size: 300px;
   }
 }
