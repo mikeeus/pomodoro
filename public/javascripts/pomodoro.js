@@ -1,5 +1,4 @@
 $(document).ready(function(){
-
   updateDisplay(timerType);
   setQuote();
   // start interval to change quote every 15 seconds;
@@ -169,7 +168,7 @@ function notify(message) {
     Notification.requestPermission(function (permission) {
       // If the user accepts, let's create a notification
       if (permission === "granted") {
-        var notification = new Notification("Hi there!");
+        var notification = new Notification(message);
       }
     });
   }
