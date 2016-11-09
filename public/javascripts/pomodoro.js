@@ -184,12 +184,8 @@ function setQuote(){
   quote = quotesArray[random].quote;
   author = quotesArray[random].by;
   $('.quote').html(quote);
-  $('.author').html(author);
-  console.log('quote: ', quotesArray[random]);
-  console.log('random #: ', random );  
+  $('.author').html(author);  
 }
-
-
 
 // Quotes list rather than using API
 var quotesArray = [
