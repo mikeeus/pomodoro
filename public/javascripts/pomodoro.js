@@ -1,4 +1,5 @@
 $(document).ready(function(){
+  notify("Welcome, we'll notify you like this, when the time is up.");
   updateDisplay(timerType);
   setQuote();
   // start interval to change quote every 15 seconds;
