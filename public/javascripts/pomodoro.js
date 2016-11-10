@@ -1,6 +1,7 @@
 $(document).ready(function(){
   notify("Welcome, we'll notify you like this, when the time is up.");
   updateDisplay(timerType);
+  $('#progress').html('Start');
   setQuote();
   // start interval to change quote every 15 seconds;
   setInterval(function(){ setQuote(); }, 20000);
@@ -13,9 +14,9 @@ var timerType = 'session';
 var baseProgressClass = "c100 big orange";
 var incrementValue = 60000; // 1 min * 60 seconds * 1000 milliseconds
 // default length
-var sessionLength = 1500000; // x mins * 60 seconds * 1000 milliseconds
+var sessionLength = 1500000; // 25 x mins * 60 s * 1000 ms
 var sessionLeft = sessionLength;
-var breakLength = 300000;
+var breakLength = 300000; // 5 mins * 60 s * 1000 ms
 var breakLeft = breakLength;
 // notification sound
 var chime = new Audio('/sounds/chime-justinbw.wav');
@@ -138,8 +139,10 @@ function updateDisplay(type){
   // update remaining time, and session/break length
   if(type == 'session'){
     remaining = parseTime(sessionLeft);
+    $('.quotes').hide();
   } else if(type == 'break'){
     remaining = parseTime(breakLeft);
+    $('.quotes').show();    
   }
   $("#progress").html(remaining);
   session = parseTime(sessionLength);  
@@ -149,6 +152,9 @@ function updateDisplay(type){
   // show's the timer's state and type, *DEBUG
   timerState ? $('#state').html('true') : $('#state').html('false');
   $('#timer-type').html(timerType);
+  if(sessionLeft == sessionLength && sessionLeft !== 0){
+    $('#progress').html('Start');
+  }
 }
 
 // Notifications
